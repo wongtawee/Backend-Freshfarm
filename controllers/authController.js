@@ -7,7 +7,7 @@ const dayjs = require('dayjs');
 const sendResetEmail = require('../utils/emailService');
 
 
-const register = async(req, res) => {
+const register = async(req, res) => {   
     const { name, email, password } = req.body;
     try {
         const userExists = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
@@ -98,7 +98,7 @@ const resetLink = `http://10.0.2.2:3000/auth/reset-redirect?token=${token}`;
     await sendResetEmail(email, resetLink);
 
     return res.status(200).json({
-      message: 'ถ้ามีบัญชีนี้ ระบบจะส่งลิงก์รีเซ็ตรหัสผ่านให้',
+      message: 'ระบบจะส่งลิงก์รีเซ็ตรหัสผ่านให้',
     });
   } catch (error) {
     console.error('Forgot password error:', error);

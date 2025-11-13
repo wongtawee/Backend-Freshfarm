@@ -1,18 +1,18 @@
-require('dotenv').config();  // โหลดตัวแปรจาก .env
+require('dotenv').config(); 
 
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER,      // อ่านจาก .env
-    pass: process.env.EMAIL_PASS       // อ่านจาก .env
+    user: process.env.EMAIL_USER,     
+    pass: process.env.EMAIL_PASS     
   }
 });
 
 async function sendResetEmail(toEmail, resetLink) {
   const mailOptions = {
-    from: `"Freshfarm Support" <${process.env.EMAIL_USER}>`,  // ใช้อีเมลจาก .env
+    from: `"Freshfarm Support" <${process.env.EMAIL_USER}>`,  
     to: toEmail,
     subject: 'ลิงก์รีเซ็ตรหัสผ่าน',
     html: `
